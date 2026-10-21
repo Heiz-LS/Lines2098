@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Lines 2098</title>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Orbitron:wght@500;700;900&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Orbitron:wght@900&display=swap">
 <style>
 :root{--bg:#f3f1fa;--surf:#fff;--surf2:#e9e6f5;--text:#1c1b2b;--muted:#625f78;--pri:#5b3df5;--onpri:#fff;--cell:#e4e0f3;--cellb:#d3cde9;--sh:0 2px 10px rgba(40,30,100,.14);--sh2:0 8px 30px rgba(40,30,100,.2);color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f0e1a;--surf:#1a1830;--surf2:#25223f;--text:#ece9ff;--muted:#a09cc0;--pri:#9d8cff;--onpri:#1a1040;--cell:#221f3b;--cellb:#2e2a4d;--sh:0 2px 10px rgba(0,0,0,.4);--sh2:0 8px 30px rgba(0,0,0,.55);color-scheme:dark}}
@@ -136,6 +136,43 @@ h1,h2,.stat b,.lvb strong,.me{font-family:'Orbitron','Outfit',sans-serif}
 .cb.on{display:block;animation:cbp .35s cubic-bezier(.2,1.6,.4,1)}
 .cb i{position:absolute;left:0;bottom:0;height:3px;width:100%;background:#fff}
 @keyframes cbp{from{transform:scale(.5)}to{transform:scale(1)}}
+/* ===== Ретро-гейм палитра, единый шрифт, панель кнопок v1.4 ===== */
+:root{--bg:#fff4e2;--surf:#fffffff2;--surf2:#ffe6c4;--text:#24103f;--muted:#6d5a8c;--pri:#00998e;--onpri:#fff;--acc:#e0307a;--y:#d98f00;--cell:#fbe9d0;--cellb:#e8c9a3;--grid:rgba(36,16,63,.07)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#130a26;--surf:#1d1235ee;--surf2:#2b1b4d;--text:#fff1dc;--muted:#bba8de;--pri:#2ee6d6;--onpri:#08121a;--acc:#ff4f9a;--y:#ffc21a;--cell:#20143b;--cellb:#3a2766;--grid:rgba(46,230,214,.07)}}
+:root[data-theme="dark"]{--bg:#130a26;--surf:#1d1235ee;--surf2:#2b1b4d;--text:#fff1dc;--muted:#bba8de;--pri:#2ee6d6;--onpri:#08121a;--acc:#ff4f9a;--y:#ffc21a;--cell:#20143b;--cellb:#3a2766;--grid:rgba(46,230,214,.07)}
+body::after{content:"";position:fixed;inset:0;pointer-events:none;opacity:.3;background-image:radial-gradient(circle,var(--y) 0 2px,transparent 2.500px),radial-gradient(circle,var(--acc) 0 3px,transparent 3.500px),radial-gradient(circle,var(--pri) 0 2px,transparent 2.500px);background-size:137px 137px,211px 211px,97px 97px;background-position:10px 20px,70px 90px,40px 60px}
+h2,.stat b,.lvb strong,.me,.card h3,.btn.pri,.ib strong,.cb,#rot h2{font-family:'Outfit',system-ui,sans-serif}
+.btn.pri{letter-spacing:0;font-size:19px;color:#2a1200;background:linear-gradient(90deg,var(--y),#ff7a30)}
+.btn.pri::before{background:var(--acc);box-shadow:0 0 12px var(--acc)}
+.card h3{letter-spacing:0;font-size:17px}
+.ib strong{font-weight:700}
+.logo i{background:linear-gradient(90deg,var(--pri),var(--acc),var(--y));-webkit-background-clip:text;background-clip:text;color:transparent}
+.menu .btn:nth-child(2)::before{background:var(--y);box-shadow:0 0 12px var(--y)}
+.menu .btn:nth-child(3)::before{background:var(--acc);box-shadow:0 0 12px var(--acc)}
+.menu .btn:nth-child(5)::before{background:#ff7a30;box-shadow:0 0 12px #ff7a30}
+.stat b,.lvb strong{color:var(--y)}
+.stat:nth-child(2){border-left-color:var(--acc)}.stat:nth-child(3){border-left-color:var(--y)}
+.board{border-color:var(--acc);box-shadow:5px 5px 0 var(--acc),0 0 36px -10px var(--pri)}
+.cell{border-bottom-width:3px}
+.cell.reach::after{content:"";position:absolute;inset:40%;border-radius:50%;background:var(--pri);opacity:.55}
+.ball{inset:7.600%}
+.ball.sel::after{inset:-10%}
+.nxt .ball{width:24px;height:24px}
+.tools{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:12px}
+.tool{font:inherit;font-size:13px;font-weight:600;color:var(--text);background:var(--surf);border:1px solid var(--cellb);border-bottom-width:3px;border-radius:14px;min-height:58px;padding:6px 4px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;cursor:pointer;transition:transform .1s,border-color .15s}
+.tool svg{width:22px;height:22px;fill:var(--pri)}
+.tool:active:not(:disabled){transform:translateY(2px)}
+.tool[aria-pressed="false"]{opacity:.55;border-style:dashed}
+.tool:disabled{opacity:.35;cursor:not-allowed}
+.tool:focus-visible{outline:3px solid var(--pri);outline-offset:2px}
+@media (hover:hover){.tool:not(:disabled):hover{border-color:var(--y)}}
+#s-game .top,#s-game .hud,#s-game .bar,#s-game .tools,#s-game .board{width:min(100%,calc(100vh - 300px));width:min(100%,calc(100dvh - 300px))}
+@media (min-width:860px) and (orientation:landscape){
+ #s-game.on{grid-template-columns:320px auto;grid-template-rows:auto auto auto auto 1fr;grid-template-areas:"top board" "hud board" "bar board" "tools board" ". board"}
+ #s-game .tools{grid-area:tools;grid-template-columns:1fr 1fr}
+ #s-game .top,#s-game .hud,#s-game .bar,#s-game .tools{width:100%}
+ #s-game .board{width:min(calc(100vw - 440px),calc(100vh - 40px));width:min(calc(100vw - 440px),calc(100dvh - 40px))}
+}
 @keyframes rotp{0%,20%{transform:rotate(-90deg)}60%,100%{transform:rotate(0)}}
 @media (orientation:landscape) and (max-height:520px) and (pointer:coarse){#rot{display:flex}}
 @media (min-width:860px) and (orientation:landscape){
@@ -144,6 +181,26 @@ h1,h2,.stat b,.lvb strong,.me{font-family:'Orbitron','Outfit',sans-serif}
  #s-game .hud{grid-area:hud;flex-direction:column;width:100%}
  #s-game .bar{grid-area:bar;width:100%;margin:6px 0 0}
  #s-game .board{grid-area:board;align-self:center;width:min(calc(100vw - 420px),calc(100vh - 40px));width:min(calc(100vw - 420px),calc(100dvh - 40px))}
+}
+/* ===== v1.5: фон из консолей и джойстиков, меньше цветов, панель 2×2 ===== */
+body::after{display:none}
+body::before{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300' viewBox='0 0 300 300' fill='none' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cg stroke='%232ee6d6' transform='translate(20 24) rotate(-14)'%3E%3Cpath d='M6 26c0-9 7-16 16-16h44c9 0 16 7 16 16l6 24c1 7-3 12-10 12-5 0-8-3-10-7l-3-7H27l-3 7c-2 4-5 7-10 7-7 0-11-5-10-12z'/%3E%3Cpath d='M30 28v14M23 35h14'/%3E%3Ccircle cx='62' cy='30' r='4'/%3E%3Ccircle cx='72' cy='38' r='4'/%3E%3C/g%3E%3Cg stroke='%23ff4f9a' transform='translate(196 16) rotate(10)'%3E%3Crect width='58' height='92' rx='11'/%3E%3Crect x='8' y='8' width='42' height='36' rx='4'/%3E%3Cpath d='M17 66v12M11 72h12'/%3E%3Ccircle cx='42' cy='66' r='4'/%3E%3Ccircle cx='48' cy='76' r='4'/%3E%3C/g%3E%3Cg stroke='%23ffc21a' transform='translate(30 168) rotate(8)'%3E%3Crect y='36' width='76' height='28' rx='8'/%3E%3Cpath d='M38 36V10'/%3E%3Ccircle cx='38' cy='6' r='9'/%3E%3Ccircle cx='20' cy='50' r='4'/%3E%3Ccircle cx='56' cy='50' r='4'/%3E%3C/g%3E%3Cg stroke='%232ee6d6' transform='translate(166 196) rotate(-6)'%3E%3Crect width='92' height='46' rx='7'/%3E%3Cpath d='M12 14h44M12 26h24'/%3E%3Ccircle cx='72' cy='18' r='4'/%3E%3Ccircle cx='72' cy='32' r='4'/%3E%3C/g%3E%3Cg stroke='%23ff4f9a' transform='translate(118 92) rotate(14)'%3E%3Crect width='30' height='38' rx='4'/%3E%3Crect x='6' y='6' width='18' height='14' rx='2'/%3E%3Cpath d='M8 30h14'/%3E%3C/g%3E%3C/svg%3E");background-size:300px 300px;-webkit-mask-image:none;mask-image:none;opacity:.2}
+#intro::before,#intro::after{background-image:none}
+.menu .btn:nth-child(n)::before{background:var(--pri);box-shadow:0 0 12px var(--pri)}
+.menu .btn.pri::before{background:#2a1200;box-shadow:none}
+.stat:nth-child(n){border-left-color:var(--pri)}
+.logo i{background:linear-gradient(90deg,var(--pri),var(--acc));-webkit-background-clip:text;background-clip:text;color:transparent}
+.board{background:var(--bg);border-color:var(--pri);box-shadow:5px 5px 0 color-mix(in srgb,var(--pri) 40%,transparent),0 0 30px -12px var(--pri)}
+@media (min-width:800px) and (min-aspect-ratio:1/1){
+ #s-game.on{grid-template-columns:280px auto;grid-template-rows:auto auto auto auto 1fr;grid-template-areas:"top board" "hud board" "tools board" "bar board" ". board";justify-content:center;justify-items:stretch;column-gap:32px;align-content:center;min-height:100vh}
+ #s-game .top{grid-area:top}
+ #s-game .hud{grid-area:hud;flex-direction:column}
+ #s-game .tools{grid-area:tools;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;aspect-ratio:1;margin-top:14px}
+ #s-game .bar{grid-area:bar;margin:14px 0 0}
+ #s-game .top,#s-game .hud,#s-game .bar,#s-game .tools{width:100%}
+ #s-game .board{grid-area:board;align-self:center;width:min(calc(100vw - 400px),calc(100vh - 40px));width:min(calc(100vw - 400px),calc(100dvh - 40px))}
+ .tool{font-size:15px;gap:6px}
+ .tool svg{width:34px;height:34px}
 }
 </style>
 </head>
@@ -160,7 +217,7 @@ h1,h2,.stat b,.lvb strong,.me{font-family:'Orbitron','Outfit',sans-serif}
     <button class="btn" data-go="rules"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm1 17h-2v-2h2zm2.1-7.8-.9.9c-.7.7-1.2 1.3-1.2 2.9h-2v-.5c0-1.1.5-2.100 1.200-2.800l1.200-1.300c.4-.3.6-.8.6-1.300 0-1.100-.9-2-2-2s-2 .9-2 2H8a4 4 0 1 1 8 0c0 .9-.4 1.700-.9 2.100z"/></svg>Правила</button>
     <button class="btn" data-go="credits"><svg viewBox="0 0 24 24"><path d="m12 21-1.500-1.400C5.400 15 2 12 2 8.500 2 5.500 4.400 3 7.500 3c1.700 0 3.400.8 4.500 2.100C13.100 3.800 14.800 3 16.500 3 19.600 3 22 5.500 22 8.500c0 3.500-3.400 6.500-8.500 11.100z"/></svg>Об игре</button>
   </div>
-  <p class="ver">Lines 2098 · версия 1.3</p>
+  <p class="ver">Lines 2098 · версия 1.5</p>
 </section>
 
 <section class="screen" id="s-levels">
@@ -169,7 +226,7 @@ h1,h2,.stat b,.lvb strong,.me{font-family:'Orbitron','Outfit',sans-serif}
 </section>
 
 <section class="screen" id="s-game">
-  <div class="top"><button class="icon" data-go="menu" aria-label="В меню"><svg viewBox="0 0 24 24"><path d="M20 11H7.800l5.600-5.600L12 4l-8 8 8 8 1.400-1.400L7.800 13H20z"/></svg></button><h2 id="gt">Игра</h2><div class="cb" id="cb" aria-live="polite"></div><button class="icon" id="restart" aria-label="Начать заново"><svg viewBox="0 0 24 24"><path d="M17.700 6.300A8 8 0 1 0 19.700 14h-2.100A6 6 0 1 1 12 6c1.700 0 3.100.7 4.200 1.800L13 11h7V4z"/></svg></button></div>
+  <div class="top"><h2 id="gt">Игра</h2><div class="cb" id="cb" aria-live="polite"></div><button class="icon" id="home" aria-label="В меню"><svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg></button></div>
   <div class="hud">
     <div class="stat"><small>Очки</small><b id="sc">0</b></div>
     <div class="stat"><small id="gl">Рекорд</small><b id="bs">0</b></div>
@@ -177,6 +234,12 @@ h1,h2,.stat b,.lvb strong,.me{font-family:'Orbitron','Outfit',sans-serif}
   </div>
   <div class="board" id="bd"></div>
   <div class="bar" id="barw"><i id="bar"></i></div>
+  <div class="tools">
+    <button class="tool" id="undo" disabled><svg viewBox="0 0 24 24"><path d="M12.500 8c-2.650 0-5.050.99-6.900 2.600L2 7v9h9l-3.620-3.620A7.960 7.960 0 0 1 12.500 10c3.540 0 6.550 2.310 7.600 5.500l2.370-.78C21.080 10.750 17.190 8 12.500 8z"/></svg><span>Отмена</span></button>
+    <button class="tool" id="hl" aria-pressed="true"><svg viewBox="0 0 24 24"><path d="M9 21c0 .55.45 1 1 1h4c.55 0 1-.45 1-1v-1H9v1zm3-19C8.140 2 5 5.140 5 9c0 2.380 1.190 4.470 3 5.740V17c0 .55.45 1 1 1h6c.55 0 1-.45 1-1v-2.260c1.810-1.270 3-3.360 3-5.740 0-3.860-3.140-7-7-7z"/></svg><span>Подсветка</span></button>
+    <button class="tool" id="snd" aria-pressed="true"><svg viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.500 3c0-1.770-1.020-3.290-2.500-4.030v8.050c1.480-.73 2.500-2.250 2.500-4.020zM14 3.230v2.060c2.890.86 5 3.540 5 6.710s-2.110 5.850-5 6.710v2.060c4.010-.91 7-4.490 7-8.770s-2.990-7.860-7-8.770z"/></svg><span>Звук</span></button>
+    <button class="tool" id="restart"><svg viewBox="0 0 24 24"><path d="M17.700 6.300A8 8 0 1 0 19.700 14h-2.100A6 6 0 1 1 12 6c1.700 0 3.100.7 4.200 1.800L13 11h7V4z"/></svg><span>Заново</span></button>
+  </div>
 </section>
 
 <section class="screen" id="s-settings">
@@ -196,6 +259,7 @@ h1,h2,.stat b,.lvb strong,.me{font-family:'Orbitron','Outfit',sans-serif}
   <div class="card"><h3>Цель</h3><p>Собирайте шарики одного цвета в линии по пять и больше. Собранная линия исчезает, а вы получаете очки.</p></div>
   <div class="card"><h3>Ход</h3><p>Нажмите на шарик, затем на свободную клетку. Шарик пройдёт туда, если есть путь по свободным клеткам: вверх, вниз, влево или вправо.</p><p>Подсвеченные клетки показывают, куда выбранный шарик может дойти.</p></div>
   <div class="card"><h3>Линии</h3><p>Линия может идти по горизонтали, вертикали или диагонали. Чем она длиннее, тем больше очков: 5 шариков дают 10, 6 дают 24, 7 дают 42.</p><p>Если ход собрал линию, новые шарики не появляются, и вы ходите ещё раз.</p></div>
+  <div class="card"><h3>Кнопки под полем</h3><p>«Отмена» возвращает последний ход. «Подсветка» включает и выключает показ клеток, куда может дойти выбранный шарик. «Звук» включает и выключает звуки. «Заново» начинает партию сначала и просит подтверждение.</p></div>
   <div class="card"><h3>Комбо и усиления</h3><p>Соберите линию, а затем успейте собрать следующую в течение 15 секунд: включится комбо. Очки за каждую следующую линию умножаются на ×2, ×3 и так далее.</p><p>Ход без линии сбрасывает комбо. Множитель и любые другие усиления действуют только 15 секунд. Оставшееся время показывает полоска на значке комбо вверху экрана.</p></div>
   <div class="card"><h3>Новые шарики</h3><p>После хода без линии появляются три шарика. Их цвета видны заранее в блоке «Дальше». Они могут сами собрать линию.</p></div>
   <div class="card"><h3>Конец игры</h3><p>Игра заканчивается, когда поле заполнено. В уровнях нужно набрать указанное число очков, чтобы открыть следующий.</p></div>
@@ -213,10 +277,10 @@ h1,h2,.stat b,.lvb strong,.me{font-family:'Orbitron','Outfit',sans-serif}
 <div class="modal" id="md"><div class="dlg"><h2 id="mt"></h2><p id="mp"></p><div class="acts" id="ma"></div></div></div>
 
 <script>
-const COL=['#ff5a6e','#4aa3ff','#43d17a','#ffc83d','#b46bff','#2fd6d0','#ff8a4a'];
+const COL=['#ff4f7b','#3d8bff','#7ee05a','#ffc21a','#a56bff','#26d9c8','#ff7a30'];
 const LEVELS=Array.from({length:50},(_,i)=>[Math.min(7,4+Math.floor(i/12)),Math.round((100+i*40)/10)*10]);
 const N=9,$=id=>document.getElementById(id);
-let S={vol:60,snd:true,dark:null,unlocked:1,best:0};
+let S={vol:60,snd:true,dark:null,unlocked:1,best:0,hl:true};
 try{Object.assign(S,JSON.parse(localStorage.getItem('lines2098')||'{}'))}catch(e){}
 const save=()=>{try{localStorage.setItem('lines2098',JSON.stringify(S))}catch(e){}};
 
@@ -305,14 +369,14 @@ function path(from,to){
 
 function tap(i){
   if(!G||G.busy||G.over)return;
-  if(G.g[i]>=0){G.sel=G.sel===i?-1:i;G.reach=G.sel<0?new Set():reachable(i);sfx.sel();draw();return}
+  if(G.g[i]>=0){G.sel=G.sel===i?-1:i;G.reach=(G.sel<0||!S.hl)?new Set():reachable(i);sfx.sel();draw();return}
   if(G.sel<0)return;
   const p=path(G.sel,i);
   if(!p){sfx.bad();return}
   move(p);
 }
 function move(p){
-  G.busy=true;const col=G.g[p[0]];G.reach=new Set();G.sel=-1;
+  G.undo={g:G.g.slice(),next:G.next.slice(),score:G.score,combo:G.combo,comboEnd:G.comboEnd};G.busy=true;const col=G.g[p[0]];G.reach=new Set();G.sel=-1;
   G.g[p[0]]=-1;let k=0;
   const step=()=>{
     if(k>0)G.g[p[k-1]]=-1;
@@ -360,9 +424,15 @@ function end(){
   G.over=true;sfx.lose();
   dialog('Поле заполнено','Очки: '+G.score+(G.lv===null?'. Рекорд: '+S.best:'. Цель была '+G.goal),[['Меню',()=>show('menu')],['Ещё раз',()=>start(G.lv),1]]);
 }
-$('restart').onclick=()=>{if(G)start(G.lv)};
+$('restart').onclick=()=>{if(G&&!G.busy)dialog('Начать заново?','Текущая партия будет потеряна.',[['Отмена'],['Заново',()=>start(G.lv),1]])};
+$('home').onclick=()=>dialog('Выйти в меню?','Текущая партия будет потеряна.',[['Остаться'],['В меню',()=>show('menu'),1]]);
+$('undo').onclick=()=>{if(!G||G.busy||G.over||!G.undo)return;const u=G.undo;G.undo=null;Object.assign(G,{g:u.g,next:u.next,score:u.score,combo:u.combo,comboEnd:u.comboEnd,sel:-1,reach:new Set()});sfx.sel();draw()};
+function syncTools(){$('hl').setAttribute('aria-pressed',S.hl);$('snd').setAttribute('aria-pressed',S.snd);$('mute').checked=S.snd}
+$('hl').onclick=()=>{S.hl=!S.hl;save();if(G){G.reach=(S.hl&&G.sel>=0)?reachable(G.sel):new Set();draw()}syncTools();sfx.sel()};
+$('snd').onclick=()=>{S.snd=!S.snd;save();syncTools();sfx.sel()};
+$('mute').addEventListener('change',syncTools);syncTools();
 function showCombo(){const e=$('cb');e.innerHTML='Комбо ×'+G.combo+'<i id="cbi"></i>';e.classList.remove('on');void e.offsetWidth;e.classList.add('on');if(G.combo>1)tone(500+G.combo*130,.25,'square',.25,.1)}
-setInterval(()=>{if(!G)return;const e=$('cb'),left=G.comboEnd-Date.now();if(left>0){const i=$('cbi');if(i)i.style.width=(left/150)+'%'}else if(e.classList.contains('on')){e.classList.remove('on');G.combo=1}},100);
+setInterval(()=>{if(!G)return;$('undo').disabled=!G.undo||G.busy||G.over;const e=$('cb'),left=G.comboEnd-Date.now();if(left>0){const i=$('cbi');if(i)i.style.width=(left/150)+'%'}else if(e.classList.contains('on')){e.classList.remove('on');G.combo=1}},100);
 function intro(){const l=G.lv,e=$('intro');
   $('i1').textContent=l===null?'Свободная игра':'Уровень '+(l+1);
   $('i2').textContent=l===null?'Без ограничений · цветов: 7':'Цель: '+G.goal+' очков · цветов: '+G.colors;
